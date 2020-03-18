@@ -1,10 +1,12 @@
 package com.douzone.jblog.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,19 +32,36 @@ public class BlogController {
 	@Autowired
 	private FileUploadService fileUploadService;
 	
-	@RequestMapping(value = {""}, method = RequestMethod.GET)
+	@RequestMapping({"","/{pathNo1}","/{pathNo1}/{pathNo2}"})
 	public String main(
 			@AuthUser UserVo authUser,
 			@PathVariable("id") String id,
-			Model model) {
+			@PathVariable Optional<Long> pathNo1,
+		    @PathVariable Optional<Long> pathNo2,
+		    ModelMap modelMap,
+		    Model model) {
 		if(authUser == null) {
 			return "redirect:/user/login";
 		}
 
+		 Long categoryNo = 0L;
+	     Long postNo = 0L;
+	      
+	      if( pathNo2.isPresent() ) {
+	         postNo = pathNo2.get();
+	         categoryNo = pathNo1.get();
+	      } else if( pathNo1.isPresent() ){
+	    	  categoryNo = pathNo1.get();
+	      }
+	      
+	      System.err.println("category:"+categoryNo);
+	      System.err.println("post:"+postNo);
+		
 		GetBlogVo(id, model);
 		
 		List<CategoryVo> list = blogService.categoryList(id);
 		
+		modelMap.putAll( blogService.getAll( id, categoryNo, postNo ) );
 		model.addAttribute("category", list);
 		return "blog/main";
 	}

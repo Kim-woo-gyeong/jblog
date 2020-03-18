@@ -1,6 +1,8 @@
 package com.douzone.jblog.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +53,28 @@ public class BlogService {
 
 	public void writeAdd(PostVo postVo) {
 		blogRepository.writeAdd(postVo);
+	}
+
+	public List<PostVo> postList(String id, Long categoryNo, Long postNo) {
+		return blogRepository.postList(id, categoryNo, postNo);
+	}
+
+	public Map<String, Object> getAll(String id, Long categoryNo, Long postNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("categoryNo", categoryNo);
+		map.put("postNo", postNo);
+		
+		if(postNo == null) {
+			
+		} else if(categoryNo == null) {
+			
+		} else {
+			List<PostVo> postList = blogRepository.postMainList(map);
+			System.err.println(postList);
+			map.put("postList",postList);
+		}
+		return map;
 	}
 
 }

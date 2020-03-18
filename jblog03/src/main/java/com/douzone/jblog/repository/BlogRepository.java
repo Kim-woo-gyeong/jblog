@@ -51,4 +51,17 @@ public class BlogRepository {
 		return sqlSession.insert("blog.post",postVo);
 	}
 
+	public List<PostVo> postList(String id, Long categoryNo, Long postNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("categoryNo", categoryNo);
+		map.put("postNo", postNo);
+		
+		return sqlSession.selectList("blog.postSelect",map);
+	}
+
+	public List<PostVo> postMainList(Map<String, Object> map) {
+		return sqlSession.selectList("blog.MainList",map);
+	}
+
 }

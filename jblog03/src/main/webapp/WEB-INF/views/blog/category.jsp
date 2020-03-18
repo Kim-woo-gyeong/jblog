@@ -38,9 +38,16 @@
 						<th>${vo.postNum }</th>
 						<th>${vo.description }</th>
 						<td>
-							<a href = "${pageContext.request.contextPath }/${vo.blogID }/admin/categorydel/${vo.no}">
-							<img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></a>
-							</td>
+							<c:choose>
+								<c:when test="${vo.postNum == 0 }">
+									<a href = "${pageContext.request.contextPath }/${vo.blogID }/admin/categorydel/${vo.no}">
+									<img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></a>
+								</c:when>
+								<c:otherwise>
+									삭제 불가
+								</c:otherwise>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>					  
 				</table>
