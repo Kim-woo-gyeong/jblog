@@ -30,7 +30,7 @@ public class BlogController {
 	@Autowired
 	private FileUploadService fileUploadService;
 	
-	@RequestMapping(value = {"","/{categoryNo}"}, method = RequestMethod.GET)
+	@RequestMapping(value = {""}, method = RequestMethod.GET)
 	public String main(
 			@AuthUser UserVo authUser,
 			@PathVariable("id") String id,
