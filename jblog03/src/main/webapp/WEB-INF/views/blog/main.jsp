@@ -12,17 +12,23 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Spring 이야기</h1>
-			<ul>
-				<li><a href="">로그인</a></li>
-				<li><a href="">로그아웃</a></li>
-				<li><a href="">블로그 관리</a></li>
+			<h1>${blogVo.title }</h1>
+				<ul>
+				<c:choose>
+					<c:when test="${empty authUser }">
+						<li><a href="${pageContext.request.contextPath }/user/login">로그인</a></li>		
+					</c:when>	
+					<c:otherwise>
+						<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a></li>
+						<li><a href="${pageContext.request.contextPath }/${blogVo.blogID }/admin/basic">블로그 관리</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">
-					<h4>Spring Camp 2016 참여기</h4>
+					<h4>스프링 캠프 2016 참여기</h4>
 					<p>
 						스프링 캠프에서는 JVM(Java Virtual Machine) 기반 시스템의 백엔드(Back-end) 또는 서버사이드(Server-side)라고 칭하는 영역을 개발하는 애플리케이션 서버 개발에 관한 기술과 정보, 경험을 공유하는 컨퍼런스입니다.<br>
 						 핵심주제로 Java와 Spring IO Platform을 다루고 있으며, 그외 Architecture나 JVM Language, Software Development Process 등 애플리케이션 서버 개발에 필요한 다양한 주제를 다루려고 노력하고 있습니다.<br>
@@ -42,25 +48,19 @@
 
 		<div id="extra">
 			<div class="blog-logo">
-				<img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+				<img src="${pageContext.request.contextPath}${blogVo.logoURL}">
 			</div>
 		</div>
 
 		<div id="navigation">
 			<h2>카테고리</h2>
 			<ul>
-				<li><a href="">닥치고 스프링</a></li>
-				<li><a href="">스프링 스터디</a></li>
-				<li><a href="">스프링 프로젝트</a></li>
-				<li><a href="">기타</a></li>
+				<c:forEach var='category' items="${category }" varStatus='satus'>
+					<li><a href="">${category.name }</a></li>
+				</c:forEach>
 			</ul>
 		</div>
-		
-		<div id="footer">
-			<p>
-				<strong>Spring 이야기</strong> is powered by JBlog (c)2016
-			</p>
-		</div>
+		<c:import url="/WEB-INF/views/includes/footer.jsp" />
 	</div>
 </body>
 </html>

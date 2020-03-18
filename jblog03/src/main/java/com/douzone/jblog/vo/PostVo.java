@@ -5,7 +5,8 @@ public class PostVo {
 	private String title;
 	private String contents;
 	private String regDate;
-	private String categoryNo;
+	private long categoryNo;
+	
 	public long getNo() {
 		return no;
 	}
@@ -30,10 +31,10 @@ public class PostVo {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public String getCategoryNo() {
+	public long getCategoryNo() {
 		return categoryNo;
 	}
-	public void setCategoryNo(String categoryNo) {
+	public void setCategoryNo(long categoryNo) {
 		this.categoryNo = categoryNo;
 	}
 	

@@ -13,9 +13,9 @@
 
 	<!-- validator, conversionService, messageConverter를 자동으로 등록 -->
 	<mvc:annotation-driven>
-<!-- 		<mvc:argument-resolvers> -->
-<!-- 			<bean class="com.douzone.security.AuthUserHandlerMethodArgumentResolver" /> -->
-<!-- 		</mvc:argument-resolvers> -->
+		<mvc:argument-resolvers>
+			<bean class="com.douzone.security.AuthUserHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 <!-- 	서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
 	<mvc:default-servlet-handler />
@@ -58,11 +58,11 @@
 	</bean>
 	
  	<!-- 멀티파트 리졸버 -->
-<!-- 	<bean id="multipartResolver"  -->
-<!--        class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
-<!--       <property name="maxUploadSize" value="52428800" /> -->
-<!--      <property name="defaultEncoding" value="utf-8" /> -->
-<!-- 	</bean> -->
+	<bean id="multipartResolver" 
+       class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="maxUploadSize" value="52428800" />
+     <property name="defaultEncoding" value="utf-8" />
+	</bean>
 	<!-- mvc resources -->
-<!-- 	<mvc:resources mapping="/images/**" location="file:/mysite-uploads/" /> -->
+	<mvc:resources mapping="/assets/images/**" location="file:/jblog-uploads/" />
 </beans>
