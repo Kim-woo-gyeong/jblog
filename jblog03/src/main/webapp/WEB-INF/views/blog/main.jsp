@@ -27,10 +27,8 @@
 							<c:when test="${authUser.id == blogVo.blogID }">
 								<li><a href="${pageContext.request.contextPath }/${blogVo.blogID }/admin/basic">블로그 관리</a></li>
 							</c:when>
-							<c:otherwise>
-								<li><a href="${pageContext.request.contextPath }/${blogVo.blogID }">블로그 메인</a><
-							</c:otherwise>
 						</c:choose>
+						<li><a href="${pageContext.request.contextPath }/${blogVo.blogID }">블로그 메인</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
