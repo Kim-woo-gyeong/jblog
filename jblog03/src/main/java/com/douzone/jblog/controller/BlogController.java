@@ -40,9 +40,9 @@ public class BlogController {
 		    @PathVariable Optional<Long> pathNo2,
 		    ModelMap modelMap,
 		    Model model) {
-		if(authUser == null) {
-			return "redirect:/user/login";
-		}
+//		if(authUser == null) {
+//			return "redirect:/user/login";
+//		}
 
 		 Long categoryNo = 0L;
 	     Long postNo = 0L;
