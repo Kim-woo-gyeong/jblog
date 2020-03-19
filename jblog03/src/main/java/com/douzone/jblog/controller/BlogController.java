@@ -72,7 +72,7 @@ public class BlogController {
 			@PathVariable("id") String id,
 			Model model) {
 		
-		if(authUser == null) {
+		if(authUser == null || !id.equals(authUser.getId() )) {
 			return "redirect:/user/login";
 		}
 		GetBlogVo(id, model);
@@ -101,7 +101,7 @@ public class BlogController {
 			@AuthUser UserVo authUser,
 			@PathVariable("id") String id,
 			Model model) {
-		if(authUser == null) {
+		if(authUser == null || !id.equals(authUser.getId() )) {
 			return "redirect:/user/login";
 		}
 		
@@ -145,7 +145,7 @@ public class BlogController {
 			@AuthUser UserVo authUser,
 			@PathVariable("id") String id,
 			Model model) {
-		if(authUser == null) {
+		if(authUser == null || !id.equals(authUser.getId() )) {
 			return "redirect:/user/login";
 		}
 		

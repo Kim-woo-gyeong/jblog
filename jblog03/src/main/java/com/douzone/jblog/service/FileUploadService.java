@@ -14,7 +14,7 @@ import com.douzone.jblog.vo.BlogVo;
 @Service
 public class FileUploadService {
 	private static final String SAVE_PATH="/jblog-uploads";
-	private static final String URL="/assets/images";
+	private static final String URL="/assets/upimages";
 	
 	@Autowired
 	private BlogService blogService;

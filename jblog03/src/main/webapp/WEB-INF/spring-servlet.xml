@@ -64,5 +64,5 @@
      <property name="defaultEncoding" value="utf-8" />
 	</bean>
 	<!-- mvc resources -->
-	<mvc:resources mapping="/assets/images/**" location="file:/jblog-uploads/" />
+	<mvc:resources mapping="/assets/upimages/**" location="file:/jblog-uploads/" />
 </beans>
