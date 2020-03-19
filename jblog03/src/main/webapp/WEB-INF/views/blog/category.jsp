@@ -33,7 +33,7 @@
 		      	<c:set var='listcount' value='${fn:length(list) }'/>
 		      	<c:forEach var='vo' items='${list }' varStatus='status'>
 					<tr>
-						<th>==listcount==${status.index + 1 }</th>
+						<th>${status.index + 1 }</th>
 						<th>${vo.name }</th>
 						<th>${vo.postNum }</th>
 						<th>${vo.description }</th>
