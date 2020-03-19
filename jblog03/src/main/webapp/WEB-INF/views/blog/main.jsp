@@ -23,9 +23,14 @@
 					</c:when>	
 					<c:otherwise>
 						<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a></li>
-						<c:if test="${authUser.id == blogVo.blogID }">
-							<li><a href="${pageContext.request.contextPath }/${blogVo.blogID }/admin/basic">블로그 관리</a></li>
-						</c:if>
+						<c:choose>
+							<c:when test="${authUser.id == blogVo.blogID }">
+								<li><a href="${pageContext.request.contextPath }/${blogVo.blogID }/admin/basic">블로그 관리</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="${pageContext.request.contextPath }/${blogVo.blogID }">블로그 메인</a><
+							</c:otherwise>
+						</c:choose>
 					</c:otherwise>
 				</c:choose>
 			</ul>
