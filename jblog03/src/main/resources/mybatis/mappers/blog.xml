@@ -76,4 +76,37 @@
 			limit 0,5
 		]]>
 	</select>
+	
+	<select id="CategoryList" parameterType="map" resultType="postvo">
+		<![CDATA[
+			select a.title as title, 
+				   a.contents as contents,
+				   a.reg_date as regDate,
+				   b.no as categoryNo,
+				   a.no as no
+			from post as a, category as b
+			where a.category_no = b.no
+				  and b.id = #{id}
+				  and a.category_no = #{categoryNo}
+			order by a.reg_date desc
+			limit 0,5
+		]]>
+	</select>
+	
+	<select id="PostList" parameterType="map" resultType="postvo">
+		<![CDATA[
+			select a.title as title, 
+				   a.contents as contents,
+				   a.reg_date as regDate,
+				   b.no as categoryNo,
+				   a.no as no
+			from post as a, category as b
+			where a.category_no = b.no
+				  and b.id = #{id}
+				  and a.category_no = #{categoryNo}
+				  and a.no = #{postNo}
+			order by a.reg_date desc
+			limit 0,5
+		]]>
+	</select>
 </mapper>

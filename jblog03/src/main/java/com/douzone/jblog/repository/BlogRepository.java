@@ -64,4 +64,12 @@ public class BlogRepository {
 		return sqlSession.selectList("blog.MainList",map);
 	}
 
+	public List<PostVo> postCategoryList(Map<String, Object> map) {
+		return sqlSession.selectList("blog.CategoryList", map);
+	}
+
+	public PostVo postPostList(Map<String, Object> map) {
+		return sqlSession.selectOne("blog.PostList",map);
+	}
+
 }

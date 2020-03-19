@@ -23,7 +23,9 @@
 					</c:when>	
 					<c:otherwise>
 						<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a></li>
-						<li><a href="${pageContext.request.contextPath }/${blogVo.blogID }/admin/basic">블로그 관리</a></li>
+						<c:if test="${authUser.id == blogVo.blogID }">
+							<li><a href="${pageContext.request.contextPath }/${blogVo.blogID }/admin/basic">블로그 관리</a></li>
+						</c:if>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -31,12 +33,23 @@
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">
-				<c:forEach var = 'post' items="${postList }" begin = '0' end = '0'>
-					<h4>${post.title }</h4>
-					<p>
-						${fn:replace(post.contents, newLine, "<br>") }
-					<p>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${postNo == 0 }">
+						<c:forEach var = 'post' items="${postList }" begin = '0' end = '0'>
+							<h4>${post.title }</h4>
+							<p>
+								${fn:replace(post.contents, newLine, "<br>") }
+							<p>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+							<h4>${PV.title }</h4>
+							<p>
+								${fn:replace(PV.contents, newLine, "<br>") }
+							<p>
+					</c:otherwise>
+				</c:choose>
+					
 					
 				</div>
 				<ul class="blog-list">
@@ -60,7 +73,20 @@
 			<h2>카테고리</h2>
 			<ul>
 				<c:forEach var='category' items="${category }" varStatus='satus'>
-					<li><a href="${pageContext.request.contextPath }/${blogVo.blogID}/${category.no}">${category.name }</a></li>
+					<c:choose>
+						<c:when test="${category.postNum == 0 }">
+							<li><a href="" onclick = "return noPost();">${category.name }</a></li>
+							<script type="text/javascript">
+								function noPost() {
+									return alert("게시물이 없습니다.")
+								}
+							</script>
+							
+						</c:when>
+						<c:otherwise>
+							<li><a href="${pageContext.request.contextPath }/${blogVo.blogID}/${category.no}">${category.name }</a></li>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 			</ul>
 		</div>
