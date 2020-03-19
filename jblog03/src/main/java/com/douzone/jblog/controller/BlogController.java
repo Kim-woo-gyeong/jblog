@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.service.FileUploadService;
+import com.douzone.jblog.service.UserService;
 import com.douzone.jblog.vo.BlogVo;
 import com.douzone.jblog.vo.CategoryVo;
 import com.douzone.jblog.vo.PostVo;
@@ -30,7 +31,11 @@ public class BlogController {
 	private BlogService blogService;
 	
 	@Autowired
+	private UserService userService;
+	
+	@Autowired
 	private FileUploadService fileUploadService;
+	
 	
 	@RequestMapping({"","/{pathNo1}","/{pathNo1}/{pathNo2}"})
 	public String main(
@@ -40,10 +45,12 @@ public class BlogController {
 		    @PathVariable Optional<Long> pathNo2,
 		    ModelMap modelMap,
 		    Model model) {
-//		if(authUser == null) {
-//			return "redirect:/user/login";
-//		}
-
+		
+		UserVo userVo = userService.getId(id);
+		if(userVo == null) {
+			return "/error/404";
+		}
+		
 		 Long categoryNo = 0L;
 	     Long postNo = 0L;
 	      
@@ -177,9 +184,8 @@ public class BlogController {
 	
 	
 	public void GetBlogVo(String id, Model model) {
-		
+	
 		BlogVo blogVo = blogService.getBlog(id);
 		model.addAttribute("blogVo", blogVo);
-		
 	}
 }

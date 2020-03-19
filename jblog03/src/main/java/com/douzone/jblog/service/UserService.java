@@ -20,5 +20,11 @@ public class UserService {
 	public UserVo getUser(UserVo vo) {
 		return userRepository.findByIdAndPassword(vo);
 	}
+
+	public UserVo getId(String id) {
+		UserVo userVo = new UserVo();
+		userVo.setId(id);
+		return userRepository.findById(userVo);
+	}
 	
 }
