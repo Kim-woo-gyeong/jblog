@@ -65,25 +65,27 @@ public class BlogService {
 		map.put("categoryNo", categoryNo);
 		map.put("postNo", postNo);
 		
-		if(postNo != 0L) {
-			
-			PostVo PV = blogRepository.postPostList(map);
-			List<PostVo> postList = blogRepository.postCategoryList(map);
-			System.err.println("CategoryList:"+postList);
-			map.put("postList",postList);
-			map.put("PV",PV);
-			
-		} else if(categoryNo != 0L) {
-			
-			List<PostVo> postList = blogRepository.postCategoryList(map);
-			System.err.println("CategoryList:"+postList);
-			map.put("postList",postList);
-			
-		} else {
-			List<PostVo> postList = blogRepository.postMainList(map);
-			System.err.println("postMainList:"+postList);
-			map.put("postList",postList);
-		}
+		List<PostVo> postList = blogRepository.postMainList(map);
+		map.put("postList",postList);
+//		if(postNo != 0L) {
+//			
+//			PostVo PV = blogRepository.postPostList(map);
+//			List<PostVo> postList = blogRepository.postCategoryList(map);
+//			System.err.println("CategoryList:"+postList);
+//			map.put("postList",postList);
+//			map.put("PV",PV);
+//			
+//		} else if(categoryNo != 0L) {
+//			
+//			List<PostVo> postList = blogRepository.postCategoryList(map);
+//			System.err.println("CategoryList:"+postList);
+//			map.put("postList",postList);
+//			
+//		} else {
+//			List<PostVo> postList = blogRepository.postMainList(map);
+//			System.err.println("postMainList:"+postList);
+//			map.put("postList",postList);
+//		}
 		return map;
 	}
 
