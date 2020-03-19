@@ -56,7 +56,7 @@
 				<c:forEach var="post" items="${postList }" varStatus='status'>
 					<li>
 						<a href="${pageContext.request.contextPath }/${blogVo.blogID}/${post.categoryNo}/${post.no}">${post.title }</a> 
-						<span>${post.regDate }</span>	
+						<span>${fn:substring(post.regDate,0,11) }</span>	
 					</li>
 				</c:forEach>
 				</ul>

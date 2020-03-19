@@ -33,19 +33,19 @@
 		      	<c:set var='listcount' value='${fn:length(list) }'/>
 		      	<c:forEach var='vo' items='${list }' varStatus='status'>
 					<tr>
-						<th>${status.index + 1 }</th>
+						<th>==listcount==${status.index + 1 }</th>
 						<th>${vo.name }</th>
 						<th>${vo.postNum }</th>
 						<th>${vo.description }</th>
 						<td>
 							<c:choose>
+								<c:when test="${vo.postNum !=0 || listcount == 1 }">
+									삭제 불가
+								</c:when>
 								<c:when test="${vo.postNum == 0 }">
 									<a href = "${pageContext.request.contextPath }/${vo.blogID }/admin/categorydel/${vo.no}">
 									<img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></a>
 								</c:when>
-								<c:otherwise>
-									삭제 불가
-								</c:otherwise>
 							</c:choose>
 						</td>
 					</tr>
