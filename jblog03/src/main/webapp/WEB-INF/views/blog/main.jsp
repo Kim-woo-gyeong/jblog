@@ -20,6 +20,7 @@
 				<c:choose>
 					<c:when test="${empty authUser }">
 						<li><a href="${pageContext.request.contextPath }/user/login">로그인</a></li>		
+						<li><a href="${pageContext.request.contextPath }/${blogVo.blogID }">블로그 메인</a></li>
 					</c:when>	
 					<c:otherwise>
 						<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a></li>
@@ -36,32 +37,32 @@
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">
-				<c:choose>
-					<c:when test="${postNo == 0 }">
-						<c:forEach var = 'post' items="${postList }" begin = '0' end = '0'>
-							<h4>${post.title }</h4>
-							<p>
-								${fn:replace(post.contents, newLine, "<br>") }
-							<p>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-							<h4>${PV.title }</h4>
-							<p>
-								${fn:replace(PV.contents, newLine, "<br>") }
-							<p>
-					</c:otherwise>
-				</c:choose>
+					<h4>${post.title }</h4>
+					<p>
+						${fn:replace(post.contents, newLine, "<br>") }
+					<p>
 					
 					
 				</div>
 				<ul class="blog-list">
-				<c:forEach var="post" items="${postList }" varStatus='status'>
-					<li>
-						<a href="${pageContext.request.contextPath }/${blogVo.blogID}/${post.categoryNo}/${post.no}">${post.title }</a> 
-						<span>${fn:substring(post.regDate,0,11) }</span>	
-					</li>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${check==1 }">
+						<c:forEach var="post" items="${postList }" varStatus='status'>
+							<li>
+								<a href="${pageContext.request.contextPath }/${blogVo.blogID}/0/${post.no}">${post.title }</a> 
+								<span>${fn:substring(post.regDate,0,11) }</span>	
+							</li>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="post" items="${postList }" varStatus='status'>
+							<li>
+								<a href="${pageContext.request.contextPath }/${blogVo.blogID}/${post.categoryNo}/${post.no}">${post.title }</a> 
+								<span>${fn:substring(post.regDate,0,11) }</span>	
+							</li>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 				</ul>
 			</div>
 		</div>

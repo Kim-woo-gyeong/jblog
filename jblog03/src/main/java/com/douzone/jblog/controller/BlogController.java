@@ -51,25 +51,27 @@ public class BlogController {
 			return "/error/404";
 		}
 		
+		int check = 1;
 		 Long categoryNo = 0L;
 	     Long postNo = 0L;
-	      
 	      if( pathNo2.isPresent() ) {
 	         postNo = pathNo2.get();
 	         categoryNo = pathNo1.get();
+	         if(categoryNo != 0) {
+	        	 check = 0;
+	         }
 	      } else if( pathNo1.isPresent() ){
 	    	  categoryNo = pathNo1.get();
+	    	  check = 0;
 	      }
 	      
-	      System.err.println("category:"+categoryNo);
-	      System.err.println("post:"+postNo);
-		
 		GetBlogVo(id, model);
 		
 		List<CategoryVo> list = blogService.categoryList(id);
 		
 		modelMap.putAll( blogService.getAll( id, categoryNo, postNo ) );
 		model.addAttribute("category", list);
+		model.addAttribute("check", check);
 		return "blog/main";
 	}
 	
