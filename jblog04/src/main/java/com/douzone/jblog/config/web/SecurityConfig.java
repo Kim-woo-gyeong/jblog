@@ -46,7 +46,7 @@ public class SecurityConfig extends WebMvcConfigurerAdapter {
 		
 		registry
 			.addInterceptor(logoutInterceptor())
-			.addPathPatterns("user/logout");
+			.addPathPatterns("/user/logout");
 	}
 	
 	
