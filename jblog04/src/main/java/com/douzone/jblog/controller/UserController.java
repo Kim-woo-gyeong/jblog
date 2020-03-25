@@ -50,31 +50,13 @@ public class UserController {
 		return "user/login";
 	}
 	
-//	@Auth
-//	@RequestMapping(value="/update", method=RequestMethod.GET)
-//	public String update(
-//			@AuthUser UserVo authUser, Model model) {
-//
-//		
-//		Long no = authUser.getNo();
-//		
-//		UserVo vo = userService.findUser(no);
-//		model.addAttribute("vo", vo);
-//		return "user/update";
-//	}
+	@RequestMapping(value = "/auth", method = RequestMethod.POST)
+	public void auth() {
+		
+	}
 	
-//	@Auth
-//	@RequestMapping(value="/update/{bool}", method=RequestMethod.POST)
-//	public String userUpdate(
-//			@PathVariable("bool") boolean bool, 
-//			Model model, 
-//			@AuthUser UserVo authUser, UserVo vo) {
-//
-//		vo.setNo(authUser.getNo());
-//		model.addAttribute("bool", bool);
-//		
-//		userService.update(vo);
-//		authUser.setName(vo.getName());
-//		return "user/joinsuccess";
-//	}
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public void logout() {
+		
+	}
 }
