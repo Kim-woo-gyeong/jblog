@@ -40,7 +40,7 @@
             on a.no = b.category_no
          where id = #{id}
          group by a.no
-         order by a.reg_date desc
+         order by a.reg_date asc
       ]]>
    </select>
    
@@ -48,6 +48,9 @@
    <![CDATA[
       insert into category values(null, #{name}, #{description},now(),#{blogID})
       ]]>
+      <selectKey keyProperty = "no" resultType="long" order="AFTER">
+		select last_insert_id()
+	</selectKey>
    </insert>
    
    <delete id="categoryDel" parameterType="categoryvo">
