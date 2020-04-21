@@ -113,41 +113,22 @@ public class BlogController {
 		if(authUser == null || !id.equals(authUser.getId() )) {
 			return "redirect:/user/login";
 		}
-		
-		
 		GetBlogVo(id, model);
-		
-		List<CategoryVo> list = blogService.categoryList(id);
-		
-		model.addAttribute("list", list);
-		
 		return "blog/category";
 	}
 	
-	@RequestMapping(value = "/admin/categoryadd", method = RequestMethod.POST)
-	public String categoryAdd(
-			@PathVariable("id") String id,
-			@ModelAttribute CategoryVo categoryVo,
-			Model model) {
-		categoryVo.setBlogID(id);
-		
-		blogService.Add(categoryVo);
-		
-		return "redirect:/{id}/admin/category";
-	}
-	
-	@RequestMapping(value = "/admin/categorydel/{no}", method = RequestMethod.GET)
-	public String categoryDel(
-			@PathVariable("id") String id,
-			@PathVariable("no") long no,
-			@ModelAttribute CategoryVo categoryVo,
-			Model model) {
-		categoryVo.setBlogID(id);
-		categoryVo.setNo(no);
-		blogService.Delete(categoryVo);
-		
-		return "redirect:/{id}/admin/category";
-	}
+//	@RequestMapping(value = "/admin/categorydel/{no}", method = RequestMethod.GET)
+//	public String categoryDel(
+//			@PathVariable("id") String id,
+//			@PathVariable("no") long no,
+//			@ModelAttribute CategoryVo categoryVo,
+//			Model model) {
+//		categoryVo.setBlogID(id);
+//		categoryVo.setNo(no);
+//		blogService.Delete(categoryVo);
+//		
+//		return "redirect:/{id}/admin/category";
+//	}
 	
 	@RequestMapping(value = "/admin/write", method = RequestMethod.GET)
 	public String write(
@@ -157,14 +138,6 @@ public class BlogController {
 		if(authUser == null || !id.equals(authUser.getId() )) {
 			return "redirect:/user/login";
 		}
-		
-		GetBlogVo(id, model);
-		
-		List<CategoryVo> list = blogService.categoryList(id);
-		model.addAttribute("list", list);
-		
-		
-		
 		return "blog/write";
 	}
 	
@@ -182,8 +155,6 @@ public class BlogController {
 		
 		return "redirect:/{id}";
 	}
-	
-	
 	
 	public void GetBlogVo(String id, Model model) {
 	

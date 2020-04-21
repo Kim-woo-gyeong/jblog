@@ -44,11 +44,11 @@ public class BlogService {
    }
 
    public void Add(CategoryVo categoryVo) {
-      blogRepository.Add(categoryVo);
+	   blogRepository.Add(categoryVo);
    }
 
-   public void Delete(CategoryVo categoryVo) {
-      blogRepository.Delete(categoryVo);
+   public boolean Delete(CategoryVo categoryVo) {
+      return 1 == blogRepository.Delete(categoryVo);
    }
 
    public void writeAdd(PostVo postVo) {
@@ -74,5 +74,9 @@ public class BlogService {
       System.err.println("service : " + postList);
       return map;
    }
+
+	public void RecentAdd(String id) {
+		blogRepository.Recent(id);
+	}
 
 }

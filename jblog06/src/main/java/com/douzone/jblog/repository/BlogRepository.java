@@ -68,4 +68,8 @@ public class BlogRepository {
 		return sqlSession.selectOne("blog.findPost", map);
 	}
 
+	public CategoryVo Recent(String id) {
+		return sqlSession.selectOne("blog.recentList",id);
+	}
+
 }
