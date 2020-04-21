@@ -117,18 +117,18 @@ public class BlogController {
 		return "blog/category";
 	}
 	
-	@RequestMapping(value = "/admin/categorydel/{no}", method = RequestMethod.GET)
-	public String categoryDel(
-			@PathVariable("id") String id,
-			@PathVariable("no") long no,
-			@ModelAttribute CategoryVo categoryVo,
-			Model model) {
-		categoryVo.setBlogID(id);
-		categoryVo.setNo(no);
-		blogService.Delete(categoryVo);
-		
-		return "redirect:/{id}/admin/category";
-	}
+//	@RequestMapping(value = "/admin/categorydel/{no}", method = RequestMethod.GET)
+//	public String categoryDel(
+//			@PathVariable("id") String id,
+//			@PathVariable("no") long no,
+//			@ModelAttribute CategoryVo categoryVo,
+//			Model model) {
+//		categoryVo.setBlogID(id);
+//		categoryVo.setNo(no);
+//		blogService.Delete(categoryVo);
+//		
+//		return "redirect:/{id}/admin/category";
+//	}
 	
 	@RequestMapping(value = "/admin/write", method = RequestMethod.GET)
 	public String write(

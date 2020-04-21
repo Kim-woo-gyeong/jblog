@@ -53,7 +53,6 @@ public class BlogController {
 		CategoryVo categoryVo = new CategoryVo();
 		categoryVo.setNo(no);
 		categoryVo.setBlogID(id);
-		System.out.println("conroller" + no +"----");
 		boolean result = blogService.Delete(categoryVo);
 		
 		return JsonResult.success(result ? no : -1);

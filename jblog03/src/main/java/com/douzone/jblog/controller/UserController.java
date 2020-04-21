@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.service.UserService;
 import com.douzone.jblog.vo.UserVo;
+import com.douzone.security.AuthUser;
 
 @Controller
 @RequestMapping("/user")
@@ -25,7 +26,8 @@ public class UserController {
 	private BlogService blogService;
 	
 	@RequestMapping(value="/join",method=RequestMethod.GET)
-	public String join(@ModelAttribute UserVo vo) {
+	public String join(
+			@ModelAttribute UserVo vo) {
 		return "user/join";
 	}
 	
@@ -46,7 +48,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login",method = RequestMethod.GET)
-	public String login() {
+	public String login(@AuthUser UserVo authUser) {
+		if(authUser != null) {
+			return "main/index";
+		}
 		return "user/login";
 	}
 	

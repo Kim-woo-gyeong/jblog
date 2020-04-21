@@ -12,12 +12,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/ejs/ejs.js"></script>
 <script type="text/javascript">
 
-if(localStorage.getItem("newCount") != null){
+/* if(localStorage.getItem("newCount") != null){
 	var count2 = JSON.parse(localStorage.getItem("newCount"));
 }else {
 	var count2 = 2;
-}
-
+} */
 var messageBox = function(title, message, callback){
 	$('#dialog-message p').text(message);
 	$('#dialog-message')
@@ -67,14 +66,14 @@ var fetchList = function(){
 
 $(function(){
 	
-	console.log(count2);
-	
+	//console.log(count2);
+	fetchList();
 	$(document).on('click', '.admin-cat td a',(function(){
 		event.preventDefault();
 		var no = $(this).data('no');
-		count2 = Number(count2) - 1;
-		localStorage.setItem("newCount", JSON.stringify(count2));
-		console.log("delete : " + count2);
+		//count2 = Number(count2) - 1;
+		//localStorage.setItem("newCount", JSON.stringify(count2));
+		//console.log("delete : " + count2);
 		$.ajax({
 			url : '${pageContext.request.contextPath}/${id}/api/admin/categorydel/'+no,
 			async:true,
@@ -88,7 +87,8 @@ $(function(){
 				}
 				
 				if(response.data != -1){
-					$('.admin-cat tr[ data-no="'+response.data+'"]').remove();
+					$('.admin-cat tr td').remove();
+					fetchList();
 					return;
 				}
 			},
@@ -132,15 +132,18 @@ $(function(){
 				
 				var imageUrl = '${pageContext.request.contextPath}/assets/images/delete.jpg';
 				response.data.image = imageUrl;
-				response.data.count = count2;
+				//response.data.count = count2;
+				/* console.log($('.admin-cat tr:last-child td')[0].innerText); */
+				response.data.index = Number($('.admin-cat tr:last-child td')[0].innerText)+1;
+				
 				var html = listItemTemplate.render(response.data);
 				
 				
 				$('.admin-cat tr#list-tr').last().after(html);
 				
-				count2 = Number(count2) + 1;
-				localStorage.setItem("newCount", JSON.stringify(count2));
-				console.log("add : "+count2);
+				//count2 = Number(count2) + 1;
+				//localStorage.setItem("newCount", JSON.stringify(count2));
+				//console.log("add : "+count2);
 				$('#add-form')[0].reset();
 			},
 			
@@ -149,8 +152,6 @@ $(function(){
 			}			
 		});
 	})
-
-	fetchList();
 });
 
 </script>
